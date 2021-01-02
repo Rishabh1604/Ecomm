@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using API.Data;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Core.Entities;
 using Core.Interfaces;
@@ -32,6 +29,20 @@ namespace API.Controllers
         {
             var product = await this.ProductRepository.GetProductByIdAsync(id);
             return Ok(product);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ProductBrand>> GetProductBrands()
+        {
+            var productBrands = await this.ProductRepository.GetProductBrandsAsync();
+            return Ok(productBrands);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ProductType>> GetProductTypes()
+        {
+            var productTypes = await this.ProductRepository.GetProductTypesAsync();
+            return Ok(productTypes);
         }
     }
 }
